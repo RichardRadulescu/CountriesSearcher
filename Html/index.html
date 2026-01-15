@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Countries</title>
+        <link rel="icon" type="image/png" href="../resources/favicon.png">
+        <link rel="stylesheet" href="../Css/style.css">
+        <script src="../Js/script.js" defer></script>
+    </head>
+    <body>
+        <form id="id-search-form" onsubmit="searchCountry(event)">
+             <div class="input-wrapper"> 
+                <input id="id-input-search" type="text" autocomplete="off"/>
+                <div id="suggestions" class="suggestions"> </div> 
+            </div>
+            <button type="submit">Search</button>
+        </form>
+        <div id="id-countries"></div>
+
+    </body>
+</html>
