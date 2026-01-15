@@ -8,18 +8,18 @@
         <script type="module" src="../Js/script.js"></script>
     </head>
     <body>
-        <div id="id-history-section">
-                <h3>Recent Searches</h3>
-                <div id="id-history"></div>
-            </div>
-        <form id="id-search-form">
-            
-            <div class="input-wrapper"> 
+        <form id="id-search-form" onsubmit="searchCountry(event)">
+                    <div id="id-history-section">
+            <h3>Recent Searches</h3>
+            <div id="id-history"></div>
+        </div>
+             <div class="input-wrapper"> 
                 <input id="id-input-search" type="text" autocomplete="off"/>
                 <div id="suggestions" class="suggestions"> </div> 
             </div>
             <button type="submit">Search</button>
         </form>
+
         <div id="id-countries"></div>
 
     </body>
