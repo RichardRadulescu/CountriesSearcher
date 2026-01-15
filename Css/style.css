@@ -18,6 +18,26 @@
     background: #eee;
 }
 
+/* --- History Section --- */
+#id-history-section {
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+#id-history-section h3 {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#id-history {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
 /* --- Global Styles --- */
 body {
     font-family: system-ui, sans-serif;
@@ -130,6 +150,35 @@ button:hover {
 
 .country-item p {
     margin: 0.2rem 0;
+}
+
+/* --- Country Pill Styling --- */
+.country-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.country-pill:hover {
+    border-color: #0969da;
+    background: #f6f8fa;
+    box-shadow: 0 2px 8px rgba(9, 105, 218, 0.15);
+    transform: translateY(-1px);
+}
+
+.country-pill img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 
 /* --- Responsive Layout --- */

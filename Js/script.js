@@ -1,8 +1,12 @@
 import { loadCountries } from "./Fetch/loadCountries.js";
 import { loadTemplate } from "./Utils/loadTemplate.js";
 import { SearchCountry } from "./Features/seachCountry.js";
+import { HistoryCountry } from "./Features/historyCountry.js";
+import { HistoryElement } from "./Components/historyElement.js";
 
 let searchCountryInstance = null;
+let historyCountry = null;
+let pillTemplate = null;
 
 // Utility function for debouncing
 function debounce(fn, delay = 300) {
@@ -18,20 +22,39 @@ async function init() {
     try {
         const countriesData = await loadCountries();
         const countryTemplate = await loadTemplate("../Html/country-list-element.html");
+        pillTemplate = await loadTemplate("../Html/country-pill-element.html");
 
         if (!countriesData || !countryTemplate) {
             console.error("Failed to load required data");
             return;
         }
 
-        // Initialize search instance
+        // Initialize instances
+        historyCountry = new HistoryCountry();
         searchCountryInstance = new SearchCountry(countriesData, countryTemplate);
+
+        // Display initial history
+        displayHistory();
 
         // Attach event listeners
         attachEventListeners();
     } catch (err) {
         console.error("Initialization error:", err);
     }
+}
+
+// Display history pills
+function displayHistory() {
+    const historyContainer = document.getElementById("id-history");
+    if (!historyContainer) return;
+
+    historyContainer.innerHTML = "";
+    const history = historyCountry.getHistory();
+
+    history.forEach(item => {
+        const historyEl = new HistoryElement(item.country, pillTemplate);
+        historyContainer.appendChild(historyEl.create());
+    });
 }
 
 // Attach all event listeners
@@ -62,6 +85,11 @@ function attachEventListeners() {
         if (!searchTerm) return;
 
         const results = searchCountryInstance.search(searchTerm);
+        if (results.length > 0) {
+            // Add to history on successful search
+            historyCountry.add(results[0].name.common);
+            displayHistory();
+        }
         searchCountryInstance.displayResults(results);
     });
 }
