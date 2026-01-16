@@ -139,6 +139,50 @@ button:hover {
     background: #eef4ff;
 }
 
+/* --- Prefer Button --- */
+.country-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.country-header h2 {
+    margin: 0;
+    flex: 1;
+}
+
+.prefer-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ccc;
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+}
+
+.prefer-btn:hover {
+    color: #ffd700;
+    transform: scale(1.2);
+    background: transparent;
+}
+
+.prefer-btn:active,
+.prefer-btn:focus,
+.prefer-btn:focus-visible {
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.prefer-btn.active {
+    color: #ffd700;
+}
 
 /* --- Country List --- */
 #id-countries {

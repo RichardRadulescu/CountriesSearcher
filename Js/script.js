@@ -3,10 +3,12 @@ import { loadTemplate } from "./Utils/loadTemplate.js";
 import { SearchCountry } from "./Features/seachCountry.js";
 import { HistoryCountry } from "./Features/historyCountry.js";
 import { HistoryElement } from "./Components/historyElement.js";
+import { PreferedCountry } from "./Features/preferedCountry.js";
 
 let searchCountryInstance = null;
 let historyCountry = null;
 let pillTemplate = null;
+let preferedCountry = null;
 
 // Utility function for debouncing
 function debounce(fn, delay = 300) {
@@ -31,11 +33,13 @@ async function init() {
 
         // Initialize instances
         historyCountry = new HistoryCountry();
-        searchCountryInstance = new SearchCountry(countriesData, countryTemplate);
+        preferedCountry = new PreferedCountry();
+        searchCountryInstance = new SearchCountry(countriesData, preferedCountry, countryTemplate);
 
         // Display initial history
         displayHistory();
-
+        displayPrefered();
+        
         // Attach event listeners
         attachEventListeners();
     } catch (err) {
@@ -64,6 +68,19 @@ function displayHistory() {
     history.forEach(item => {
         const historyEl = new HistoryElement(item.country, pillTemplate);
         historyContainer.appendChild(historyEl.create());
+    });
+}
+
+function displayPrefered() {
+    const preferedContainer = document.getElementById("id-prefered");
+    if (!preferedContainer) return;
+
+    preferedContainer.innerHTML = "";
+    const prefered = preferedCountry.getPreferedCountries();
+
+    prefered.forEach(country => {
+        const preferedEl = new PreferedElement(country, pillTemplate);
+        preferedContainer.appendChild(preferedEl.create());
     });
 }
 
