@@ -43,6 +43,16 @@ async function init() {
     }
 }
 
+// Show spinner
+function showSpinner() {
+    document.getElementById("id-spinner").style.display = "block";
+}
+
+// Hide spinner
+function hideSpinner() {
+    document.getElementById("id-spinner").style.display = "none";
+}
+
 // Display history pills
 function displayHistory() {
     const historyContainer = document.getElementById("id-history");
@@ -84,6 +94,7 @@ function attachEventListeners() {
         const searchTerm = input.value.trim();
         if (!searchTerm) return;
 
+        showSpinner();
         const results = searchCountryInstance.search(searchTerm);
         if (results.length > 0) {
             // Add to history on successful search
@@ -91,6 +102,7 @@ function attachEventListeners() {
             displayHistory();
         }
         searchCountryInstance.displayResults(results);
+        hideSpinner();
     });
 }
 
