@@ -1,9 +1,10 @@
 import { CountryElement } from "../Components/countryElement.js";
 
 export class SearchCountry {
-    constructor(countriesData, countryTemplate) {
+    constructor(countriesData, preferedCountry, countryTemplate) {
         this.countriesData = countriesData;
         this.countryTemplate = countryTemplate;
+        this.preferedCountry = preferedCountry;
     }
 
     search(searchTerm) {
@@ -26,7 +27,31 @@ export class SearchCountry {
 
         results.forEach(c => {
             const countryEl = new CountryElement(c, this.countryTemplate);
-            countriesList.appendChild(countryEl.create());
+            const listItem = countryEl.create();
+            
+            const preferBtn = listItem.querySelector('[data-action="prefer"]');
+            
+            
+            
+            if (this.preferedCountry.isPreferred(c.name.common)) {
+                preferBtn.classList.add("active");
+            } else {
+             preferBtn.classList.remove("active");
+            }
+            
+            preferBtn.addEventListener("click", () => {
+                
+                if(this.preferedCountry.isPreferred(c)) {
+                    this.preferedCountry.remove(c);
+                    preferBtn.classList.remove("active");
+                } else {
+                    this.preferedCountry.add(c);
+                    preferBtn.classList.add("active");
+                }
+            });
+
+            
+            countriesList.appendChild(listItem);
         });
 
         countriesContainer.appendChild(countriesList);
