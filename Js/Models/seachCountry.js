@@ -1,4 +1,4 @@
-import { CountryElement } from "../Components/countryElement.js";
+import { CountryElement } from "../View/countryElement.js";
 
 export class SearchCountry {
     constructor(countriesData, preferedCountry, countryTemplate) {
