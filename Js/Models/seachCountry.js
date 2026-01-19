@@ -25,7 +25,7 @@ export class SearchCountry {
         countriesContainer.innerHTML = "";
         const countriesList = document.createElement("ul");
         
-        countriesList.classList.add("list-group", "w-100")
+        //countriesList.classList.add("list-group", "w-100")
 
         results.forEach(c => {
             const countryEl = new CountryElement(c, this.countryTemplate);
