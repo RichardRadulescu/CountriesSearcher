@@ -19,9 +19,6 @@ export class HistoryController extends Controller {
         history.forEach(item => {
             const historyEl = new HistoryElement(item.country, this.pillTemplate);
             const element = historyEl.create();
-            element.addEventListener("click", () => {
-                if (this.onItemClick) this.onItemClick(item.country);
-            });
             this.container.appendChild(element);
         });
     }

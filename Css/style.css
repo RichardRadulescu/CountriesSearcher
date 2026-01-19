@@ -189,7 +189,9 @@ button:hover {
     margin: 0 auto;
     padding: 0;
 }
-
+#id-countries ul {
+    width: 100%;
+}
 .country-item {
     list-style: none;
     background: white;
