@@ -149,7 +149,6 @@ button:hover {
 
 .country-header h2 {
     margin: 0;
-    flex: 1;
 }
 
 .prefer-btn {
@@ -201,7 +200,9 @@ button:hover {
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    width: 100%;
 }
+
 
 .country-item img {
     border-radius: 6px;
