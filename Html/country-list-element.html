@@ -1,13 +1,26 @@
-<li class="country-item">
-  <div class="country-header">
-    <button class="prefer-btn" data-action="prefer" title="Add to favorites">★</button>
-    <h2 data-field="name"></h2>
-  </div>
-  <img data-field="flag" width="80">
+<li class="country-item list-group-item p-3 mb-3 border rounded shadow-sm w-100">
 
-  <p><strong>Region:</strong> <span data-field="region"></span></p>
-  <p><strong>Capital:</strong> <span data-field="capital"></span></p>
-  <p><strong>Population:</strong> <span data-field="population"></span></p>
-  <p><strong>Languages:</strong> <span data-field="languages"></span></p>
-  <p><strong>Timezones:</strong> <span data-field="timezones"></span></p>
+  <div class="country-header d-flex justify-content-between align-items-center mb-2">
+    <h2 data-field="name" class="h5 m-0 fw-semibold"></h2>
+
+    <button 
+      class="prefer-btn btn btn-sm btn-outline-warning" 
+      data-action="prefer" 
+      title="Add to favorites"
+    >
+    </button>
+  </div>
+
+  <div class="text-center mb-3">
+    <img data-field="flag" width="80" class="rounded border">
+  </div>
+
+  <p class="mb-1"><strong>Region:</strong> <span data-field="region"></span></p>
+  <p class="mb-1"><strong>Capital:</strong> <span data-field="capital"></span></p>
+  <p class="mb-1"><strong>Population:</strong> <span data-field="population"></span></p>
+  <p class="mb-1"><strong>Languages:</strong> <span data-field="languages"></span></p>
+  <p class="mb-0"><strong>Timezones:</strong> <span data-field="timezones" class="text-break"></span>
+</p>
+  
+
 </li>

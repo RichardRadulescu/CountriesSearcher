@@ -13,10 +13,11 @@ export class HistoryElement {
         pill.querySelector('[data-field="name"]').textContent = this.country;
         
         // Placeholder flag - you can enhance this with actual country data
-        const flagImg = pill.querySelector('[data-field="flag"]');
+        /*const flagImg = pill.querySelector('[data-field="flag"]');
         if (flagImg) {
             flagImg.alt = this.country;
-        }
+            flagImg.src = this.country.flags?.png
+        }*/
 
         // Add click event to trigger search
         pill.addEventListener("click", () => {
