@@ -10,9 +10,10 @@ import { PreferenceController } from "./Controllers/PreferenceController.js";
 
 async function init() {
     try {
+        const templPath = "../Html/templates";
         const countriesData = await loadCountries();
-        const countryTemplate = await loadTemplate("../Html/country-list-element.html");
-        const pillTemplate = await loadTemplate("../Html/country-pill-element.html");
+        const countryTemplate = await loadTemplate(templPath + "/country-list-element.html");
+        const pillTemplate = await loadTemplate(templPath + "/country-pill-element.html");
 
         if (!countriesData || !countryTemplate) {
             console.error("Failed to load required data");

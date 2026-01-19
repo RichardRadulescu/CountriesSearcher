@@ -1,0 +1,39 @@
+<!-- Toggle Button -->
+<button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#myAside">
+  Toggle Aside
+</button>
+
+<!-- Aside (Offcanvas) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="myAside">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Sidebar</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <p>This is your toggleable aside using only Bootstrap.</p>
+
+    <!-- Future modal trigger -->
+    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#futureModal">
+      Open Future Modal
+    </button>
+  </div>
+</div>
+
+<!-- Future Modal -->
+<div class="modal fade" id="futureModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Future Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Your modal content goes here.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
