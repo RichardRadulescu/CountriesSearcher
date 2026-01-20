@@ -2,10 +2,10 @@ import { Controller } from "./Controller.js";
 import { PreferedElement } from "../View/preferedElement.js";
 
 export class PreferenceController extends Controller {
-    constructor(preferedCountry, pillTemplate) {
+    constructor(preferedCountry, preferedTemplate) {
         super();
         this.preferedCountry = preferedCountry;
-        this.pillTemplate = pillTemplate;
+        this.preferedTemplate = preferedTemplate;
         this.container = document.getElementById("id-prefered");
     }
 
@@ -16,7 +16,7 @@ export class PreferenceController extends Controller {
         const prefered = this.preferedCountry.getPreferedCountries();
 
         prefered.forEach(country => {
-            const preferedEl = new PreferedElement(country, this.pillTemplate);
+            const preferedEl = new PreferedElement(country, this.preferedTemplate);
             const element = preferedEl.create();
             element.addEventListener("click", () => this.remove(country.name.common));
             this.container.appendChild(element);
@@ -47,13 +47,18 @@ export class PreferenceController extends Controller {
     setupEventListeners() {
         // Preference events for search results
         document.addEventListener("click", (event) => {
-            if (event.target.classList.contains("prefer-btn")) {
-                event.preventDefault();
-                const countryName = event.target.closest("li")?.dataset.countryName;
+            if (event.target.closest(".prefer-btn")) {
+                //event.preventDefault();
+                const parentList = event.target.closest("li");
+            const countryName = parentList
+                ?.querySelector('[data-field="name"]')
+                ?.textContent
+                .trim();
+
                 if (countryName) {
                     this.toggle(countryName);
                     this.refresh();
-                    event.target.classList.toggle("active");
+                    event.target.closest(".prefer-btn")?.classList.toggle("active");
                 }
             }
         });

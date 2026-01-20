@@ -14,7 +14,7 @@ async function init() {
         const countriesData = await loadCountries();
         const countryTemplate = await loadTemplate(templPath + "/country-list-element.html");
         const pillTemplate = await loadTemplate(templPath + "/country-pill-element.html");
-
+        const preferedTemplate = await loadTemplate(templPath + "/preferred-country-element.html");
         if (!countriesData || !countryTemplate) {
             console.error("Failed to load required data");
             return;
@@ -30,7 +30,7 @@ async function init() {
             spinner: new SpinnerController(),
             search: new SearchController(searchCountry),
             history: new HistoryController(historyCountry, pillTemplate),
-            preference: new PreferenceController(preferedCountry, pillTemplate),
+            preference: new PreferenceController(preferedCountry, preferedTemplate),
         };
 
         // Wire controllers together
