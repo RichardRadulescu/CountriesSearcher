@@ -1,6 +1,7 @@
 export class PreferedElement {
-    constructor(country, template) {
+    constructor(country, preferedCountry, template) {
         this.country = country;
+        this.preferedCountry = preferedCountry;
         this.template = template;
     }
 
@@ -15,7 +16,7 @@ export class PreferedElement {
 
         const unpreferedBtn = element.querySelector('[data-action="unpreferred"]');
         unpreferedBtn.addEventListener("click", () => {
-            preferedCountry.remove(this.country);
+            this.preferedCountry.remove(this.country);
         });
 
         return element;
