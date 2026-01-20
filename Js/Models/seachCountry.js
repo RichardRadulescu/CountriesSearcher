@@ -42,7 +42,11 @@ export class SearchCountry {
             }
             
             preferBtn.addEventListener("click", () => {
+                const event = new CustomEvent("preferToggle", {
+                     detail: { country: c }
+                })
                 
+
                 if(this.preferedCountry.isPreferred(c)) {
                     this.preferedCountry.remove(c);
                     preferBtn.classList.remove("active");
@@ -50,6 +54,8 @@ export class SearchCountry {
                     this.preferedCountry.add(c);
                     preferBtn.classList.add("active");
                 }
+
+                document.dispatchEvent(event);
             });
 
             

@@ -1,6 +1,7 @@
 export class PreferedElement {
-    constructor(country, template) {
+    constructor(country, preferedCountry, template) {
         this.country = country;
+        this.preferedCountry = preferedCountry;
         this.template = template;
     }
 
@@ -13,10 +14,9 @@ export class PreferedElement {
         element.querySelector('[data-field="name"]').textContent = this.country.name.common;
         element.querySelector('[data-field="flag"]').src = this.country.flags.png;
 
-        // TODO: Add click event for unprefered button
-        const unpreferedBtn = element.querySelector('[data-action="unprefered"]');
+        const unpreferedBtn = element.querySelector('[data-action="unpreferred"]');
         unpreferedBtn.addEventListener("click", () => {
-            preferedCountry.remove(this.country);
+            this.preferedCountry.remove(this.country);
         });
 
         return element;
