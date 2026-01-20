@@ -52,7 +52,6 @@ export class SearchController extends Controller {
             if (e.relatedTarget && this.suggestions.contains(e.relatedTarget)) return;
             this.hideSuggestions();
         });
-
         // Form submit
         this.form.addEventListener("submit", (event) => {
             event.preventDefault();
