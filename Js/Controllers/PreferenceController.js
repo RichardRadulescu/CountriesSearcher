@@ -6,7 +6,7 @@ export class PreferenceController extends Controller {
         super();
         this.preferedCountry = preferedCountry;
         this.preferedTemplate = preferedTemplate;
-        this.container = document.getElementById("id-prefered");
+        
     }
 
     refresh() {
@@ -41,6 +41,7 @@ export class PreferenceController extends Controller {
     }
 
     init() {
+        this.container = document.getElementById("id-prefered-countries");
         this.refresh();
     }
 

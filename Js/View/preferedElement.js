@@ -16,6 +16,7 @@ export class PreferedElement {
 
         const unpreferedBtn = element.querySelector('[data-action="unpreferred"]');
         unpreferedBtn.addEventListener("click", () => {
+            e.stopPropagation();
             this.preferedCountry.remove(this.country);
         });
 
