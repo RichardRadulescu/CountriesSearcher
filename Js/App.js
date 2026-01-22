@@ -9,11 +9,13 @@ import { HistoryController } from "./Controllers/HistoryController.js";
 import { PreferenceController } from "./Controllers/PreferenceController.js";
 import { SearchPreferedController } from "./Controllers/SearchPreferedController.js";
 import { PreferedCountrySelected } from "./Models/preferedCountrySelected.js";
+import { initializeGlobeWithBorders, loadCountriesBorders } from "./Services/globe.js";
 
 async function init() {
     try {
         const templPath = "../Html/templates";
         const countriesData = await loadCountries();
+        const countriesBorders = await loadCountriesBorders();
         const countryTemplate = await loadTemplate(templPath + "/country-list-element.html");
         const pillTemplate = await loadTemplate(templPath + "/country-pill-element.html");
         const preferedTemplate = await loadTemplate(templPath + "/preferred-country-element.html");
@@ -57,6 +59,8 @@ async function init() {
         // Initialize and setup all controllers
         Object.values(controllers).forEach(controller => controller.init());
         Object.values(controllers).forEach(controller => controller.setupEventListeners());
+
+        initializeGlobeWithBorders(countriesBorders);
     } catch (err) {
         console.error("Initialization error:", err);
     }

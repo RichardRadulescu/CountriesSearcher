@@ -2,7 +2,11 @@
 
   <div class="country-header d-flex align-items-center mb-2 px-5">
     <h1 class="h5 m-0 fw-semibold flex-grow-1 text-center" data-field="name"></h1>
-
+    <button class="btn btn-sm btn-outline-primary ms-2" 
+          onclick="flyToCountryByName(this.closest('.country-item').querySelector('[data-field=&quot;name&quot;]').textContent.trim())"
+          title="View on Globe">
+      <i class="bi bi-geo-alt-fill"></i>
+    </button>
     <button class="prefer-btn btn btn-sm btn-outline-warning ms-auto" data-action="prefer" title="Add to favorites">
       <i class="bi bi-star-fill"></i>
     </button>
