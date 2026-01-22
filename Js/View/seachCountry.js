@@ -1,4 +1,4 @@
-import { CountryElement } from "../View/countryElement.js";
+import { CountryElement } from "./countryElement.js";
 
 export class SearchCountry {
     constructor(countriesData, preferedCountry, countryTemplate) {
@@ -79,24 +79,23 @@ export class SearchCountry {
     showSuggestions(list) {
         const box = document.getElementById("suggestions");
         box.innerHTML = "";
-
-        list.forEach(country => {
-            const div = document.createElement("div");
-            div.className = "suggestion-item";
-            div.textContent = country.name.common;
-            div.tabIndex = 0;
-
-            div.addEventListener("click", () => {
-                const input = document.getElementById("id-input-search");
-                input.value = country.name.common;
-                this.hideSuggestions();
-                document.getElementById("id-search-form").requestSubmit();
-            });
-
-            box.appendChild(div);
-        });
-
         box.style.display = "block";
+        if (list.length === 0)
+            { box.classList.remove("show"); return; } 
+        Array.from(list).forEach(country => { 
+            const item = document.createElement("button"); 
+            item.type = "button"; 
+            item.className = "list-group-item list-group-item-action";
+            item.textContent = country.name.common; 
+            item.addEventListener("click", () => { 
+                const input = document.getElementById("id-input-search"); 
+                input.value = country.name.common; 
+                this.hideSuggestions(); 
+                document.getElementById("id-search-form").requestSubmit(); 
+            }); 
+        box.appendChild(item); 
+    }); 
+    box.classList.add("show");
     }
 
     hideSuggestions() {

@@ -1,20 +1,25 @@
 import { loadCountries } from "./Services/loadCountries.js";
 import { loadTemplate } from "./Utils/loadTemplate.js";
-import { SearchCountry } from "./Models/seachCountry.js";
+import { SearchCountry } from "./View/seachCountry.js";
 import { HistoryCountry } from "./Models/historyCountry.js";
 import { PreferedCountry } from "./Models/preferedCountry.js";
 import { SearchController } from "./Controllers/SearchController.js";
 import { SpinnerController } from "./Controllers/SpinnerController.js";
 import { HistoryController } from "./Controllers/HistoryController.js";
 import { PreferenceController } from "./Controllers/PreferenceController.js";
+import { SearchPreferedController } from "./Controllers/SearchPreferedController.js";
+import { PreferedCountrySelected } from "./Models/preferedCountrySelected.js";
+import { initializeGlobeWithBorders, loadCountriesBorders } from "./Services/globe.js";
 
 async function init() {
     try {
         const templPath = "../Html/templates";
         const countriesData = await loadCountries();
+        const countriesBorders = await loadCountriesBorders();
         const countryTemplate = await loadTemplate(templPath + "/country-list-element.html");
         const pillTemplate = await loadTemplate(templPath + "/country-pill-element.html");
         const preferedTemplate = await loadTemplate(templPath + "/preferred-country-element.html");
+        const preferedSearchTemplate = await loadTemplate(templPath + "/preferred-search-controll.html");
         if (!countriesData || !countryTemplate) {
             console.error("Failed to load required data");
             return;
@@ -24,12 +29,14 @@ async function init() {
         const historyCountry = new HistoryCountry();
         const preferedCountry = new PreferedCountry();
         const searchCountry = new SearchCountry(countriesData, preferedCountry, countryTemplate);
+        const preferedCountrySelected = new PreferedCountrySelected();
 
         // Initialize Controllers
         const controllers = {
             spinner: new SpinnerController(),
             search: new SearchController(searchCountry),
             history: new HistoryController(historyCountry, pillTemplate),
+            selected_preference: new SearchPreferedController(preferedCountry, preferedCountrySelected, preferedSearchTemplate),
             preference: new PreferenceController(preferedCountry, preferedTemplate),
         };
 
@@ -52,6 +59,8 @@ async function init() {
         // Initialize and setup all controllers
         Object.values(controllers).forEach(controller => controller.init());
         Object.values(controllers).forEach(controller => controller.setupEventListeners());
+
+        initializeGlobeWithBorders(countriesBorders);
     } catch (err) {
         console.error("Initialization error:", err);
     }
