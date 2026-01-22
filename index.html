@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Countries</title>
     <link rel="icon" type="image/png" href="../resources/favicon.png">
     <!--<link rel="stylesheet" href="../Css/style.css"> -->
@@ -18,15 +19,13 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-center ms-3">
-        <div class="me-auto">
+        <div class="me-auto align-items-center">
             <i class="bi bi-globe2 fs-3"></i>
-        </div>
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Countries</a>
+            <a class="navbar-brand mx-2" href="#">Countries</a>
         </div>
     </nav>
 
-    <button class="btn btn-primary position-sticky top-0 d-flex align-items-center" data-bs-toggle="offcanvas"
+    <button class="btn btn-primary position-sticky top-0 d-flex align-items-center z-1" data-bs-toggle="offcanvas"
         data-bs-target="#myAside">
         <i class="bi bi-list"></i>
         <span>Options</span>
@@ -67,10 +66,11 @@
                     placeholder="Search for a country..." />
                 <button class="btn btn-primary" type="submit">
                     <i class="bi bi-search"></i>
-                    <span>Search</span></button>
+                    <span class="d-none d-sm-inline">Search</span>
+                </button>
                 <button class="btn btn-outline-secondary" type="button" onclick="toggleGlobe()">
                     <i class="bi bi-globe-americas"></i>
-                    <span>Show/Hide Globe</span>
+                    <span class="d-none d-sm-inline">Show/Hide Globe</span>
                 </button>
             </div>
 
@@ -80,34 +80,32 @@
         <div id="id-spinner" class="spinner-border text-primary d-none"></div>
 
         <div class="container-fluid vh-100 d-flex flex-column p-0">
-            <div class="d-flex flex-grow-1 overflow-hidden" style="min-height: 0;">
+            <div class="d-flex flex-column flex-grow-1 overflow-hidden" style="min-height: 0;">
 
                 <div id="id-globe-visualize" style="min-width: 300px; flex: 3 1 60%; height: 100%; overflow: hidden;">
+
                 </div>
-
-                <div id="id-countries" class="bg-light border-start p-3 overflow-auto"
-                    style="min-width: 300px; flex: 2 1 40%; height: 100%;">
-                </div>
-
-            </div>
-        </div>
-
-        <div class="modal fade" id="preferedCountriesModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Preferred Countries</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body" id="id-prefered">
-                        <!-- Preferred countries will be loaded here -->
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+                 <div id="id-countries" class="bg-light border-start p-3 overflow-auto"
+                        style="min-width: 300px; flex: 2 1 40%; height: 100%;">
                 </div>
             </div>
         </div>
+            <div class="modal fade" id="preferedCountriesModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Preferred Countries</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body" id="id-prefered">
+                            <!-- Preferred countries will be loaded here -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     </main>
 </body>
