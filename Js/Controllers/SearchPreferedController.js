@@ -32,14 +32,18 @@ export class SearchPreferedController extends Controller {
             const isSelected = item.dataset.selected === "true";
             item.dataset.selected = isSelected ? "false" : "true";
             item.classList.toggle("selected");
-          
+          e.stopPropagation();
         });
         //select all button
         const selectAllBtn = this.container.querySelector('.btn.btn-outline-primary'); 
         selectAllBtn.addEventListener('click', () => {
              const items = this.container.querySelectorAll('.preferred-item');
-              items.forEach(item => { item.dataset.selected = "true"; 
-                item.classList.add("selected"); });
+              items.forEach(item => {
+                item.dataset.selected = "true"; 
+                item.classList.add("selected");
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                if (checkbox) checkbox.checked = true;
+            });
         });
         //delete selected button
         const deleteBtn = this.container.querySelector('.btn.btn-outline-danger');
@@ -51,10 +55,7 @@ export class SearchPreferedController extends Controller {
                 const name = item.querySelector('[data-field="name"]').textContent;
                 
                 // Remove from your data model
-                this.preferedCountrySelected = this.preferedCountrySelected.filter(
-                    c => c.name !== name
-                );
-
+                this.preferedCountry.remove(name);
                 // Remove from DOM
                 item.remove();
             });
@@ -69,7 +70,11 @@ export class SearchPreferedController extends Controller {
 
             items.forEach(item => {
                 const name = item.querySelector('[data-field="name"]').textContent.toLowerCase();
-                item.style.display = name.includes(term) ? "" : "none";
+                //item.style.display = name.includes(term) ? "" : "none";
+                if (name.includes(term))
+                    item.classList.remove("d-none");
+                else
+                    item.classList.add("d-none");
             });
         });
 

@@ -13,11 +13,17 @@ export class PreferedElement {
         // Fill fields
         element.querySelector('[data-field="name"]').textContent = this.country.name.common;
         element.querySelector('[data-field="flag"]').src = this.country.flags.png;
-
+        
         const unpreferedBtn = element.querySelector('[data-action="unpreferred"]');
-        unpreferedBtn.addEventListener("click", () => {
-            e.stopPropagation();
-            this.preferedCountry.remove(this.country);
+        unpreferedBtn.addEventListener("click", (e) => {
+            if(e.target.closest(".prefer-btn.btn")) {
+                this.preferedCountry.remove(this.country);
+                const event = new CustomEvent("preferToggle", {
+                     detail: { country: this.country }
+                })
+                document.dispatchEvent(event);
+                e.stopPropagation();
+            }
         });
 
         return element;

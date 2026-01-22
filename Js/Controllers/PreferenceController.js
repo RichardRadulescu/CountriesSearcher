@@ -18,7 +18,6 @@ export class PreferenceController extends Controller {
         prefered.forEach(country => {
             const preferedEl = new PreferedElement(country, this.preferedCountry, this.preferedTemplate);
             const element = preferedEl.create();
-            element.addEventListener("click", () => this.remove(country.name.common));
             this.container.appendChild(element);
         });
     }
