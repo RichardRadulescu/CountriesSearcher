@@ -6,7 +6,7 @@ export class PreferenceController extends Controller {
         super();
         this.preferedCountry = preferedCountry;
         this.preferedTemplate = preferedTemplate;
-        this.container = document.getElementById("id-prefered");
+        
     }
 
     refresh() {
@@ -18,7 +18,6 @@ export class PreferenceController extends Controller {
         prefered.forEach(country => {
             const preferedEl = new PreferedElement(country, this.preferedCountry, this.preferedTemplate);
             const element = preferedEl.create();
-            element.addEventListener("click", () => this.remove(country.name.common));
             this.container.appendChild(element);
         });
     }
@@ -41,6 +40,7 @@ export class PreferenceController extends Controller {
     }
 
     init() {
+        this.container = document.getElementById("id-prefered-countries");
         this.refresh();
     }
 

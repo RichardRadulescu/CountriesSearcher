@@ -1,15 +1,21 @@
-<div class="preferred-item d-flex align-items-center justify-content-between p-2 border rounded bg-white shadow-sm">
+<div class="preferred-item d-flex align-items-center justify-content-between p-2 border rounded bg-white shadow-sm"
+     data-id=""
+     data-selected="false">
+
+  <!-- Left side: flag + name -->
   <div class="d-flex align-items-center gap-2">
+    <input type="checkbox" class="select-toggle form-check-input me-2" />
     <img data-field="flag" width="40" class="rounded">
     <span data-field="name" class="fw-medium"></span>
   </div>
 
-  <button 
-  class="prefer-btn btn btn-sm btn-outline-danger" 
-  data-action="unpreferred" 
-  title="Remove from favorites"
->
-  <i class="bi bi-star"></i>
-</button>
+  <!-- Right side: actions -->
+  <div class="d-flex align-items-center gap-2">
+    <button class="prefer-btn btn btn-sm btn-outline-danger z-1"
+            data-action="unpreferred"
+            title="Remove from favorites">
+      <i class="bi bi-star"></i>
+    </button>
+  </div>
 
 </div>
